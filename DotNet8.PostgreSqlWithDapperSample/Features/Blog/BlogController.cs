@@ -57,6 +57,20 @@ namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog
             }
         }
 
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchBlog([FromBody] BlogRequestModel requestModel, int id)
+        {
+            try
+            {
+                var result = await _bL_Blog.PatchBlog(requestModel, id);
+                return Content(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlog(int id)
         {

@@ -1,7 +1,9 @@
-﻿using DotNet8.PostgreSqlWithDapperSample.Enums;
+﻿using Dapper;
+using DotNet8.PostgreSqlWithDapperSample.Enums;
 using DotNet8.PostgreSqlWithDapperSample.Models;
 using DotNet8.PostgreSqlWithDapperSample.Queries;
 using DotNet8.PostgreSqlWithDapperSample.Services;
+using Npgsql;
 
 namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog
 {
@@ -82,6 +84,37 @@ namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog
             return responseModel;
         }
 
+        public async Task<Result<BlogResponseModel>> PatchBlog(BlogRequestModel requestModel, int id)
+        {
+            Result<BlogResponseModel> responseModel;
+            try
+            {
+                string conditions = string.Empty;
+                conditions = GetConditions(conditions, requestModel);
+
+                if (conditions.Length == 0)
+                {
+                    responseModel = Result<BlogResponseModel>.FailureResult("Invalid Request.");
+                    goto result;
+                }
+
+                string query = GetPatchBlogQuery(conditions);
+                var parameters = new DynamicParameters();
+                parameters = GetPatchBlogParams(parameters, requestModel, id);
+
+                int result = await _dapperService.ExecuteAsync(query, parameters);
+
+                responseModel = Result<BlogResponseModel>.ExecuteResult(result, successStatusCode: EnumStatusCode.Accepted);
+            }
+            catch (Exception ex)
+            {
+                responseModel = Result<BlogResponseModel>.FailureResult(ex);
+            }
+
+        result:
+            return responseModel;
+        }
+
         public async Task<Result<BlogResponseModel>> DeleteBlog(int id)
         {
             Result<BlogResponseModel> responseModel;
@@ -98,6 +131,55 @@ namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog
             }
 
             return responseModel;
+        }
+
+        private string GetConditions(string conditions, BlogRequestModel requestModel)
+        {
+            if (!requestModel.BlogTitle!.IsNullOrEmpty())
+            {
+                conditions += @"""BlogTitle"" = @BlogTitle, ";
+            }
+
+            if (!requestModel.BlogAuthor!.IsNullOrEmpty())
+            {
+                conditions += @"""BlogAuthor"" = @BlogAuthor, ";
+            }
+
+            if (!requestModel.BlogContent!.IsNullOrEmpty())
+            {
+                conditions += @"""BlogContent"" = @BlogContent, ";
+            }
+
+            return conditions;
+        }
+
+        private DynamicParameters GetPatchBlogParams(DynamicParameters parameters, BlogRequestModel requestModel, int id)
+        {
+            parameters.Add("@BlogId", id);
+
+            if (!requestModel.BlogTitle!.IsNullOrEmpty())
+            {
+                parameters.Add("@BlogTitle", requestModel.BlogTitle);
+            }
+
+            if (!requestModel.BlogAuthor!.IsNullOrEmpty())
+            {
+                parameters.Add("@BlogAuthor", requestModel.BlogAuthor);
+            }
+
+            if (!requestModel.BlogContent!.IsNullOrEmpty())
+            {
+                parameters.Add("@BlogContent", requestModel.BlogContent);
+            }
+
+            return parameters;
+        }
+
+        private string GetPatchBlogQuery(string conditions)
+        {
+            return $@"UPDATE public.""Tbl_Blog""
+                SET {conditions.Substring(0, conditions.Length - 2)}
+                WHERE ""BlogId"" = @BlogId;";
         }
     }
 }

@@ -84,5 +84,27 @@ namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog
         result:
             return responseModel;
         }
+
+        public async Task<Result<BlogResponseModel>> PatchBlog(BlogRequestModel requestModel, int id)
+        {
+            Result<BlogResponseModel> responseModel;
+            try
+            {
+                if (id <= 0)
+                {
+                    responseModel = Result<BlogResponseModel>.FailureResult(MessageResource.InvalidId);
+                    goto result;
+                }
+
+                responseModel = await _dA_Blog.PatchBlog(requestModel, id);
+            }
+            catch (Exception ex)
+            {
+                responseModel = Result<BlogResponseModel>.FailureResult(ex);
+            }
+
+        result:
+            return responseModel;
+        }
     }
 }
