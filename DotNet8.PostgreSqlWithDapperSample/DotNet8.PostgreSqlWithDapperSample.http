@@ -1,0 +1,6 @@
+@DotNet8.PostgreSqlWithDapperSample_HostAddress = http://localhost:5198
+
+GET {{DotNet8.PostgreSqlWithDapperSample_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
