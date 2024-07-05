@@ -1,5 +1,4 @@
 ﻿using DotNet8.PostgreSqlWithDapperSample.Features.Blog;
-using DotNet8.PostgreSqlWithDapperSample.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DotNet8.PostgreSqlWithDapperSample

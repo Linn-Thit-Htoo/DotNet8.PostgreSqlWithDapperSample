@@ -1,5 +1,4 @@
-﻿using Dapper;
-using Npgsql;
+﻿using Npgsql;
 using System.Data;
 
 namespace DotNet8.PostgreSqlWithDapperSample.Services

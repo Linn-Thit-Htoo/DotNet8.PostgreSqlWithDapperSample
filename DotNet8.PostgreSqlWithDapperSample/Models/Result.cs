@@ -1,5 +1,4 @@
-﻿using DotNet8.PostgreSqlWithDapperSample.Enums;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace DotNet8.PostgreSqlWithDapperSample.Models
