@@ -2,6 +2,7 @@
 
 global using System.Data;
 global using Dapper;
+global using DotNet8.PostgreSqlWithDapperSample;
 global using DotNet8.PostgreSqlWithDapperSample.Enums;
 global using DotNet8.PostgreSqlWithDapperSample.Features.Blog;
 global using DotNet8.PostgreSqlWithDapperSample.Models;
