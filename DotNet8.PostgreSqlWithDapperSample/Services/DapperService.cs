@@ -17,6 +17,7 @@ public class DapperService
     {
         using IDbConnection db = GetConnection();
         var lst = await db.QueryAsync<T>(query, parameters, commandType: commandType);
+
         return lst.ToList();
     }
 
