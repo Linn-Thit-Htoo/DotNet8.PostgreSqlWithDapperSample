@@ -1,7 +1,4 @@
-﻿using DotNet8.PostgreSqlWithDapperSample.Models;
-using DotNet8.PostgreSqlWithDapperSample.Resources;
-
-namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog;
+﻿namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog;
 
 public class BL_Blog
 {

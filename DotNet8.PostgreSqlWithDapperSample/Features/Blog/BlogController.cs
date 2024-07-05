@@ -1,5 +1,4 @@
-﻿using DotNet8.PostgreSqlWithDapperSample.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet8.PostgreSqlWithDapperSample.Features.Blog

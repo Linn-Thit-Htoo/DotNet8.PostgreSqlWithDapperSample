@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using DotNet8.PostgreSqlWithDapperSample.Enums;
-using DotNet8.PostgreSqlWithDapperSample.Models;
 using DotNet8.PostgreSqlWithDapperSample.Queries;
 using DotNet8.PostgreSqlWithDapperSample.Services;
 using Npgsql;
