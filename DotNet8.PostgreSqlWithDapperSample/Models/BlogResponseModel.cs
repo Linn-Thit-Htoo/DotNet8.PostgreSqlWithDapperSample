@@ -1,6 +1,3 @@
-﻿namespace DotNet8.PostgreSqlWithDapperSample.Models
-{
-    public class BlogResponseModel
-    {
-    }
-}
+﻿namespace DotNet8.PostgreSqlWithDapperSample.Models;
+
+public class BlogResponseModel { }
