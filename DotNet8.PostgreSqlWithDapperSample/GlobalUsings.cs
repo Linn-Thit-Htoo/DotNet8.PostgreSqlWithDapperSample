@@ -7,3 +7,4 @@ global using DotNet8.PostgreSqlWithDapperSample.Queries;
 global using DotNet8.PostgreSqlWithDapperSample.Resources;
 global using DotNet8.PostgreSqlWithDapperSample.Services;
 global using Microsoft.AspNetCore.Mvc;
+global using Newtonsoft.Json;
