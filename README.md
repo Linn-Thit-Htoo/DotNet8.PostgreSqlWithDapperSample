@@ -3,6 +3,6 @@
 
 
 Packages
-* (Dapper)[https://github.com/DapperLib/Dapper]
+* [Dapper](https://github.com/DapperLib/Dapper)
 * Npgsql
 * Newtonsoft.Json
