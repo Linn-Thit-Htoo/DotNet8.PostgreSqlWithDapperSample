@@ -4,5 +4,5 @@
 
 Packages
 * [Dapper](https://github.com/DapperLib/Dapper)
-* Npgsql
-* Newtonsoft.Json
+* [Npgsql](https://github.com/npgsql/npgsql)
+* [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
