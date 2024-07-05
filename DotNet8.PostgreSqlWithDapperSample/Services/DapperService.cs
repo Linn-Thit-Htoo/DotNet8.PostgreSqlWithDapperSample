@@ -15,9 +15,7 @@ public class DapperService
         CommandType commandType = CommandType.Text
     )
     {
-        using IDbConnection db = new NpgsqlConnection(
-            _configuration.GetConnectionString("DbConnection")
-        );
+        using IDbConnection db = GetConnection();
         var lst = await db.QueryAsync<T>(query, parameters, commandType: commandType);
         return lst.ToList();
     }
@@ -28,9 +26,7 @@ public class DapperService
         CommandType commandType = CommandType.Text
     )
     {
-        using IDbConnection db = new NpgsqlConnection(
-            _configuration.GetConnectionString("DbConnection")
-        );
+        using IDbConnection db = GetConnection();
         var item = await db.QueryFirstOrDefaultAsync<T>(
             query,
             parameters,
@@ -41,9 +37,14 @@ public class DapperService
 
     public async Task<int> ExecuteAsync(string query, object parameters)
     {
-        using IDbConnection db = new NpgsqlConnection(
+        using IDbConnection db = GetConnection();
+        return await db.ExecuteAsync(query, parameters);
+    }
+
+    private NpgsqlConnection GetConnection()
+    {
+        return new NpgsqlConnection(
             _configuration.GetConnectionString("DbConnection")
         );
-        return await db.ExecuteAsync(query, parameters);
     }
 }

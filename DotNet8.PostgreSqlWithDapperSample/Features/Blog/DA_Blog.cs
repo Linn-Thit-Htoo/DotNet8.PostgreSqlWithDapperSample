@@ -113,7 +113,7 @@ public class DA_Blog
             responseModel = Result<BlogResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 

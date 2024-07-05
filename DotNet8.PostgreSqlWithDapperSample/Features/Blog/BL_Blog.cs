@@ -30,7 +30,7 @@ public class BL_Blog
             responseModel = Result<BlogResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 
@@ -56,7 +56,7 @@ public class BL_Blog
             responseModel = Result<BlogResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 
@@ -78,7 +78,7 @@ public class BL_Blog
             responseModel = Result<BlogResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 
@@ -100,7 +100,7 @@ public class BL_Blog
             responseModel = Result<BlogResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 }
