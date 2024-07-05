@@ -138,6 +138,8 @@ public class DA_Blog
         return responseModel;
     }
 
+    #region Get Conditions
+
     private string GetConditions(string conditions, BlogRequestModel requestModel)
     {
         if (!requestModel.BlogTitle!.IsNullOrEmpty())
@@ -157,6 +159,10 @@ public class DA_Blog
 
         return conditions;
     }
+
+    #endregion
+
+    #region Get Patch Blog Params
 
     private DynamicParameters GetPatchBlogParams(
         DynamicParameters parameters,
@@ -184,10 +190,16 @@ public class DA_Blog
         return parameters;
     }
 
+    #endregion
+
+    #region Get Patch Blog Query
+
     private string GetPatchBlogQuery(string conditions)
     {
         return $@"UPDATE public.""Tbl_Blog""
                 SET {conditions.Substring(0, conditions.Length - 2)}
                 WHERE ""BlogId"" = @BlogId;";
     }
+
+    #endregion
 }
